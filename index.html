@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue</title>
+
+	<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+	
+	<div id="app">
+		<input type="text" v-on:input='changeMessage'>
+		{{ message }}
+
+		<a v-bind:href="link">Google</a>
+		
+		<hr>
+			
+		<p v-html="finshLink"></p>
+
+		<button v-on:click="increase(3, $event)">Click</button>
+		<p>{{ counter }}</p>
+
+		<hr>
+		<p v-on:mousemove="uptCord">Координаты: {{ x }} / {{ y }}</p>
+
+		<div class="demo-blk">
+			
+			<div class="blk" v-bind:style="[myStyle, {height: width + 'px'}]"></div>
+
+				<div class="blk" v-on:click="attachedRed = !attachedRed" v-bind:class="{red: attachedRed}" v-bind:style="{backgroundColor: color}"></div>
+
+			<div class="blk" v-bind:class="[color, {red: attachedRed}]"></div>
+
+		</div>
+
+		<hr>
+
+		<input type="text" v-model="color">
+
+		<hr>
+
+		<div>
+			
+			<p v-if="show">Далеко-далеко за словесными.<span>Hello!</span></p>
+
+			<p v-else>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+
+			<template v-if="show">
+				<h1>Далеко-далеко.</h1>
+				<p>Далеко-далеко за словесными горами в стране, гласных.</p>
+			</template>
+
+			<p v-show="show">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto dolore ullam sunt a soluta incidunt voluptate laborum illo, quod illum minus totam mollitia nisi maiores blanditiis beatae, numquam harum eligendi.</p>
+
+			<button v-on:click="show = !show">SW</button>
+
+		</div>
+
+		<div class="list">
+			
+			<ul>
+				<li v-for="todo in todos">{{ todo }}</li>
+			</ul>
+
+		</div>
+
+	</div>
+
+<script src="vue.js"></script>
+
+<script>
+
+	new Vue({
+		el: '#app',
+		data: {
+			message: 'Hello',
+			link: 'https://www.google.com.ua',
+			finshLink: '<a href="https://www.google.com.ua">Гугл</a>',
+			counter: 0,
+			x: 0,
+			y: 0,
+			attachedRed: false,
+			color: 'red',
+			width: 50,
+			show: true,
+			todos: [1,2,3]
+		},
+		methods: {
+			changeMessage: function(event) {
+				this.message = event.target.value
+			},
+			increase: function(step, event) {
+				this.counter += step;
+			},
+			uptCord: function(event) {
+				this.x = event.clientX;
+				this.y = event.clientY;
+			}
+		},
+		computed: {
+			myStyle: function() {
+				return {
+					backgroundColor: this.color,
+					width: this.width + 'px'
+				}
+			}
+		}
+	});
+
+</script>
+
+</body>
+</html>

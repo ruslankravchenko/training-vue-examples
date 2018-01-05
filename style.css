@@ -1,0 +1,27 @@
+.demo-blk {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	width: 500px;
+	margin: 0 auto;
+}
+.blk {
+	width: 100px;
+	height: 100px;
+	background-color: #000;
+	margin: 10px;
+}
+.red {
+	background-color: red;
+}
+.green {
+	background-color: green;
+}
+.blue {
+	background-color: blue;
+}
